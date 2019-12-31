@@ -10,6 +10,8 @@ class Role extends Model
         'name'
     ];
 
+    public $timestamps = false;
+
     /**
      * A role may have one or many users.
      */
