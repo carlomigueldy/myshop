@@ -16,7 +16,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'role_id', 
+        'first_name', 
+        'last_name', 
+        'email', 
+        'password',
     ];
 
     /**
@@ -36,4 +40,28 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * A user belongs to a certain role.
+     */
+    public function role()
+    {
+        return $this->belongsTo('App\Role');
+    }
+
+    /**
+     * A user can only have one cart.
+     */
+    public function cart()
+    {
+        return $this->hasOne('App\Cart');
+    }
+
+    /**
+     * A user can have one or many orders.
+     */
+    public function orders()
+    {
+        return $this->hasMany('App\Order');
+    }
 }
